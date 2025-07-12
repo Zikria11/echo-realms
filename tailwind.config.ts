@@ -61,6 +61,19 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// EchoRealms Mystical Colors
+				'magical-glow': 'hsl(var(--magical-glow))',
+				'ethereal-mist': 'hsl(var(--ethereal-mist))',
+				'cosmic-deep': 'hsl(var(--cosmic-deep))',
+				'starlight': 'hsl(var(--starlight))',
+				emotion: {
+					joy: 'hsl(var(--emotion-joy))',
+					sadness: 'hsl(var(--emotion-sadness))',
+					anger: 'hsl(var(--emotion-anger))',
+					fear: 'hsl(var(--emotion-fear))',
+					surprise: 'hsl(var(--emotion-surprise))',
+					neutral: 'hsl(var(--emotion-neutral))'
 				}
 			},
 			borderRadius: {

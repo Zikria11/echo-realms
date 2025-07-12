@@ -8,35 +8,64 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* EchoRealms Mystical Design System */
+    --background: 245 25% 8%;
+    --foreground: 280 15% 92%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 245 20% 12%;
+    --card-foreground: 280 15% 92%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 245 20% 12%;
+    --popover-foreground: 280 15% 92%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 280 65% 60%;
+    --primary-foreground: 245 25% 8%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 245 15% 18%;
+    --secondary-foreground: 280 15% 85%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 245 15% 15%;
+    --muted-foreground: 280 8% 65%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 45 90% 65%;
+    --accent-foreground: 245 25% 8%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 280 15% 92%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 245 15% 20%;
+    --input: 245 15% 15%;
+    --ring: 280 65% 60%;
 
-    --radius: 0.5rem;
+    /* Mystical Elements */
+    --magical-glow: 280 85% 70%;
+    --ethereal-mist: 260 40% 25%;
+    --cosmic-deep: 245 30% 6%;
+    --starlight: 45 95% 85%;
+    
+    /* Emotion Colors */
+    --emotion-joy: 45 90% 65%;
+    --emotion-sadness: 210 70% 55%;
+    --emotion-anger: 0 70% 60%;
+    --emotion-fear: 280 50% 45%;
+    --emotion-surprise: 320 60% 65%;
+    --emotion-neutral: 280 15% 60%;
+
+    /* Gradients */
+    --gradient-mystical: linear-gradient(135deg, hsl(var(--cosmic-deep)), hsl(var(--ethereal-mist)));
+    --gradient-magical: linear-gradient(120deg, hsl(var(--primary)), hsl(var(--accent)));
+    --gradient-ethereal: linear-gradient(45deg, hsl(var(--magical-glow) / 0.1), hsl(var(--accent) / 0.1));
+
+    /* Shadows & Effects */
+    --shadow-mystical: 0 20px 40px -10px hsl(var(--primary) / 0.3);
+    --shadow-glow: 0 0 30px hsl(var(--magical-glow) / 0.4);
+    --shadow-ethereal: 0 8px 32px hsl(var(--cosmic-deep) / 0.6);
+
+    /* Animations */
+    --transition-mystical: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-float: transform 3s ease-in-out infinite;
+
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +130,99 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: var(--gradient-mystical);
+    min-height: 100vh;
   }
+}
+
+@layer components {
+  /* Mystical Button Variants */
+  .btn-mystical {
+    @apply bg-gradient-to-r from-primary to-accent text-primary-foreground font-medium px-6 py-3 rounded-lg;
+    box-shadow: var(--shadow-mystical);
+    transition: var(--transition-mystical);
+  }
+  
+  .btn-mystical:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .btn-ethereal {
+    @apply bg-card/80 border border-primary/30 text-foreground backdrop-blur-sm;
+    transition: var(--transition-mystical);
+  }
+  
+  .btn-ethereal:hover {
+    @apply border-primary/60 bg-card;
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Floating Animation */
+  .float-gentle {
+    animation: float-gentle 6s ease-in-out infinite;
+  }
+
+  .float-mystical {
+    animation: float-mystical 4s ease-in-out infinite;
+  }
+
+  /* Card Variants */
+  .card-mystical {
+    @apply bg-card/90 border border-primary/20 backdrop-blur-lg rounded-2xl;
+    box-shadow: var(--shadow-ethereal);
+  }
+
+  .card-ethereal {
+    background: var(--gradient-ethereal);
+    @apply border border-primary/10 backdrop-blur-xl rounded-2xl;
+  }
+
+  /* Text Glows */
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--magical-glow) / 0.6);
+  }
+
+  .text-starlight {
+    color: hsl(var(--starlight));
+    text-shadow: 0 0 10px hsl(var(--starlight) / 0.8);
+  }
+}
+
+@layer utilities {
+  /* Emotion-based backgrounds */
+  .bg-emotion-joy {
+    background: linear-gradient(135deg, hsl(var(--emotion-joy) / 0.2), hsl(var(--emotion-joy) / 0.1));
+  }
+  
+  .bg-emotion-sadness {
+    background: linear-gradient(135deg, hsl(var(--emotion-sadness) / 0.2), hsl(var(--emotion-sadness) / 0.1));
+  }
+  
+  .bg-emotion-anger {
+    background: linear-gradient(135deg, hsl(var(--emotion-anger) / 0.2), hsl(var(--emotion-anger) / 0.1));
+  }
+  
+  .bg-emotion-fear {
+    background: linear-gradient(135deg, hsl(var(--emotion-fear) / 0.2), hsl(var(--emotion-fear) / 0.1));
+  }
+  
+  .bg-emotion-surprise {
+    background: linear-gradient(135deg, hsl(var(--emotion-surprise) / 0.2), hsl(var(--emotion-surprise) / 0.1));
+  }
+  
+  .bg-emotion-neutral {
+    background: linear-gradient(135deg, hsl(var(--emotion-neutral) / 0.2), hsl(var(--emotion-neutral) / 0.1));
+  }
+}
+
+/* Keyframes */
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes float-mystical {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-15px) scale(1.02); }
 }
