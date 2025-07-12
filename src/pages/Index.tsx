@@ -6,10 +6,14 @@ import { Badge } from '@/components/ui/badge';
 import { EmotionScanner } from '@/components/EmotionScanner';
 import { StoryDisplay, Story } from '@/components/StoryDisplay';
 import { WhisperArchive } from '@/components/WhisperArchive';
-import { Sparkles, Heart, Book, Archive, Globe, Users } from 'lucide-react';
+import { AuthForm } from '@/components/AuthForm';
+import { UserProfile } from '@/components/UserProfile';
+import { useAuth } from '@/hooks/useAuth';
+import { Sparkles, Heart, Book, Archive, Globe, Users, User, LogOut } from 'lucide-react';
 import heroImage from '@/assets/echorealms-hero.jpg';
 
 const Index = () => {
+  const { user, loading, signOut } = useAuth();
   const [currentStory, setCurrentStory] = useState<{
     emotion: string;
     intensity: number;
@@ -17,6 +21,7 @@ const Index = () => {
   } | null>(null);
   const [savedStories, setSavedStories] = useState<Story[]>([]);
   const [activeTab, setActiveTab] = useState('home');
+  const [showProfile, setShowProfile] = useState(false);
 
   const handleEmotionDetected = (emotion: string, intensity: number, text: string) => {
     setCurrentStory({ emotion, intensity, userInput: text });
@@ -32,6 +37,44 @@ const Index = () => {
     setSavedStories(prev => prev.filter(story => story.id !== id));
   };
 
+  const handleLogout = async () => {
+    await signOut();
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-mystical flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-2 border-magical-glow border-t-transparent mx-auto mb-4" />
+          <p className="text-white/80">Connecting to the EchoRealms...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <AuthForm onSuccess={() => {}} />;
+  }
+
+  if (showProfile) {
+    return (
+      <div className="min-h-screen bg-gradient-mystical p-4">
+        <div className="container mx-auto max-w-4xl">
+          <div className="mb-6">
+            <Button 
+              variant="outline" 
+              onClick={() => setShowProfile(false)}
+              className="border-white/30 text-white hover:bg-white/10"
+            >
+              ← Back to EchoRealms
+            </Button>
+          </div>
+          <UserProfile />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -41,6 +84,28 @@ const Index = () => {
           style={{ backgroundImage: `url(${heroImage})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/60 to-background" />
+        
+        {/* User Navigation */}
+        <div className="absolute top-4 right-4 z-10 flex gap-2">
+          <Button 
+            variant="outline" 
+            size="sm"
+            onClick={() => setShowProfile(true)}
+            className="border-white/30 text-white hover:bg-white/10"
+          >
+            <User className="h-4 w-4 mr-2" />
+            Profile
+          </Button>
+          <Button 
+            variant="outline" 
+            size="sm"
+            onClick={handleLogout}
+            className="border-white/30 text-white hover:bg-white/10"
+          >
+            <LogOut className="h-4 w-4 mr-2" />
+            Sign Out
+          </Button>
+        </div>
         
         <div className="relative container mx-auto px-4 py-16">
           <div className="max-w-4xl mx-auto text-center space-y-8">

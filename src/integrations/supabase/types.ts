@@ -14,7 +14,270 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      achievements: {
+        Row: {
+          achieved_on: string
+          badge_description: string | null
+          badge_emoji: string | null
+          badge_name: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          achieved_on?: string
+          badge_description?: string | null
+          badge_emoji?: string | null
+          badge_name: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          achieved_on?: string
+          badge_description?: string | null
+          badge_emoji?: string | null
+          badge_name?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      characters: {
+        Row: {
+          appearance: Json | null
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          story_count: number | null
+          traits: Json | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          appearance?: Json | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          story_count?: number | null
+          traits?: Json | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          appearance?: Json | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          story_count?: number | null
+          traits?: Json | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      echo_links: {
+        Row: {
+          created_at: string
+          emotion_similarity_score: number | null
+          id: string
+          user1_id: string
+          user2_id: string
+        }
+        Insert: {
+          created_at?: string
+          emotion_similarity_score?: number | null
+          id?: string
+          user1_id: string
+          user2_id: string
+        }
+        Update: {
+          created_at?: string
+          emotion_similarity_score?: number | null
+          id?: string
+          user1_id?: string
+          user2_id?: string
+        }
+        Relationships: []
+      }
+      emotions: {
+        Row: {
+          detected_from: string | null
+          emotion: Database["public"]["Enums"]["emotion_type"]
+          id: string
+          intensity: number | null
+          raw_input: string | null
+          timestamp: string
+          user_id: string
+        }
+        Insert: {
+          detected_from?: string | null
+          emotion: Database["public"]["Enums"]["emotion_type"]
+          id?: string
+          intensity?: number | null
+          raw_input?: string | null
+          timestamp?: string
+          user_id: string
+        }
+        Update: {
+          detected_from?: string | null
+          emotion?: Database["public"]["Enums"]["emotion_type"]
+          id?: string
+          intensity?: number | null
+          raw_input?: string | null
+          timestamp?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      journal_entries: {
+        Row: {
+          content: string
+          created_at: string
+          detected_emotion: Database["public"]["Enums"]["emotion_type"] | null
+          emotion_intensity: number | null
+          id: string
+          is_locked: boolean | null
+          is_public: boolean | null
+          title: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          detected_emotion?: Database["public"]["Enums"]["emotion_type"] | null
+          emotion_intensity?: number | null
+          id?: string
+          is_locked?: boolean | null
+          is_public?: boolean | null
+          title?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          detected_emotion?: Database["public"]["Enums"]["emotion_type"] | null
+          emotion_intensity?: number | null
+          id?: string
+          is_locked?: boolean | null
+          is_public?: boolean | null
+          title?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_emoji: string | null
+          bio: string | null
+          created_at: string
+          id: string
+          preferred_genres: Database["public"]["Enums"]["story_genre"][] | null
+          privacy_setting: string | null
+          updated_at: string
+          username: string | null
+        }
+        Insert: {
+          avatar_emoji?: string | null
+          bio?: string | null
+          created_at?: string
+          id: string
+          preferred_genres?: Database["public"]["Enums"]["story_genre"][] | null
+          privacy_setting?: string | null
+          updated_at?: string
+          username?: string | null
+        }
+        Update: {
+          avatar_emoji?: string | null
+          bio?: string | null
+          created_at?: string
+          id?: string
+          preferred_genres?: Database["public"]["Enums"]["story_genre"][] | null
+          privacy_setting?: string | null
+          updated_at?: string
+          username?: string | null
+        }
+        Relationships: []
+      }
+      stories: {
+        Row: {
+          bookmark_position: number | null
+          content: string
+          created_at: string
+          emotion_tag: Database["public"]["Enums"]["emotion_type"]
+          genre: Database["public"]["Enums"]["story_genre"] | null
+          id: string
+          is_public: boolean | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          bookmark_position?: number | null
+          content: string
+          created_at?: string
+          emotion_tag: Database["public"]["Enums"]["emotion_type"]
+          genre?: Database["public"]["Enums"]["story_genre"] | null
+          id?: string
+          is_public?: boolean | null
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          bookmark_position?: number | null
+          content?: string
+          created_at?: string
+          emotion_tag?: Database["public"]["Enums"]["emotion_type"]
+          genre?: Database["public"]["Enums"]["story_genre"] | null
+          id?: string
+          is_public?: boolean | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      story_arcs: {
+        Row: {
+          character_ids: string[] | null
+          created_at: string
+          description: string | null
+          id: string
+          is_active: boolean | null
+          story_ids: string[] | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          character_ids?: string[] | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          story_ids?: string[] | null
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          character_ids?: string[] | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          story_ids?: string[] | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +286,30 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      emotion_type:
+        | "joy"
+        | "sadness"
+        | "anger"
+        | "fear"
+        | "surprise"
+        | "disgust"
+        | "neutral"
+        | "excitement"
+        | "nostalgia"
+        | "anxiety"
+        | "contentment"
+        | "frustration"
+      story_genre:
+        | "fantasy"
+        | "sci-fi"
+        | "horror"
+        | "romance"
+        | "mystery"
+        | "adventure"
+        | "drama"
+        | "comedy"
+        | "thriller"
+        | "historical"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +436,33 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      emotion_type: [
+        "joy",
+        "sadness",
+        "anger",
+        "fear",
+        "surprise",
+        "disgust",
+        "neutral",
+        "excitement",
+        "nostalgia",
+        "anxiety",
+        "contentment",
+        "frustration",
+      ],
+      story_genre: [
+        "fantasy",
+        "sci-fi",
+        "horror",
+        "romance",
+        "mystery",
+        "adventure",
+        "drama",
+        "comedy",
+        "thriller",
+        "historical",
+      ],
+    },
   },
 } as const
